@@ -22,7 +22,21 @@ class PolyTreeNode
 
     def remove_child(child_node)
         child_node.parent = nil
+       
         raise "error" if !@children.include?(child_node)
     end
+
+    def dfs(target_value)
+        return self if target_value == self.value
+        @children.each do |child|
+            if child.dfs(target_value)
+                return child.dfs(target_value)
+            end 
+        end
+        return nil
+    end
+
+
+
 
 end
